@@ -9,6 +9,7 @@ const migadaBan = new Audio('/migadaBan.wav');
 const Migada = () => {
   migadaTheme.play();
   const [victim, setVictim] = useState('FunkyPandaLover');
+  const [banCommand, setBanCommand] = useState('');
   const [options, setOptions] = useState([]);
   const [muted, setMute] = useState(false);
 
@@ -21,11 +22,16 @@ const Migada = () => {
     setOptions(updatedOptions);
   }, [victim]);
 
-  const newVictim = (username) => setVictim(username);
+  const newVictim = (username) => {
+    setVictim(username);
+    setBanCommand('');
+  };
   const handleBan = (username) => {
-    migadaTheme.pause();
-    setTimeout(migadaBan.play(), 500);
-    console.log(username);
+    setMute(true);
+    setTimeout(() => {
+      migadaBan.play();
+      setBanCommand(`/timeout ${username} 600`);
+    }, 500);
   };
 
   const toggleMute = () => setMute(!muted);
@@ -61,6 +67,11 @@ const Migada = () => {
             onChange={(e) => newVictim(e.target.value)}
           ></input>
           <button onClick={toggleMute}>MUTE</button>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <h2>{banCommand}</h2>
         </Col>
       </Row>
     </Container>
