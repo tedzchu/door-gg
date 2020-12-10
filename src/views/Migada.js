@@ -3,22 +3,14 @@ import { Wheel } from '../components';
 
 const Migada = () => {
   const victim = 'FunkyPandaLover';
-  const fiftyFifty = false;
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
     const updatedOptions = [];
-    if (fiftyFifty) {
-      Array.from({ length: 3 }).forEach(() => {
-        updatedOptions.push(`Ban ${victim}`);
-        updatedOptions.push(`Spare ${victim}`);
-      });
-    } else {
+    Array.from({ length: 3 }).forEach(() => {
       updatedOptions.push(`Ban ${victim}`);
-      Array.from({ length: 5 }).forEach(() => {
-        updatedOptions.push(`Spare ${victim}`);
-      });
-    }
+      updatedOptions.push(`Spare ${victim}`);
+    });
     setOptions(updatedOptions);
   }, []);
 
