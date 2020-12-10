@@ -1,2 +1,2 @@
 export { default as Home } from './Home';
-export { default as Migada } from './Migada';
+export { default as Migada } from './migada';
