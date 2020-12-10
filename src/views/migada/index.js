@@ -3,9 +3,14 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Wheel } from '../../components';
 import './index.css';
 
+const migadaTheme = new Audio('/migadaTheme.mp3');
+const migadaBan = new Audio('/migadaBan.wav');
+
 const Migada = () => {
-  const victim = 'FunkyPandaLover';
+  migadaTheme.play();
+  const [victim, setVictim] = useState('FunkyPandaLover');
   const [options, setOptions] = useState([]);
+  const [muted, setMute] = useState(false);
 
   useEffect(() => {
     const updatedOptions = [];
@@ -14,24 +19,49 @@ const Migada = () => {
       updatedOptions.push(`Spare ${victim}`);
     });
     setOptions(updatedOptions);
-  }, []);
+  }, [victim]);
+
+  const newVictim = (username) => setVictim(username);
+  const handleBan = (username) => {
+    migadaTheme.pause();
+    setTimeout(migadaBan.play(), 500);
+    console.log(username);
+  };
+
+  const toggleMute = () => setMute(!muted);
+  if (muted) {
+    migadaTheme.pause();
+    migadaTheme.currentTime = 0;
+  }
 
   return (
-    <Container>
+    <Container fluid>
+      <Row>
+        <Col>
+          <h1>RAUL ROYALE</h1>
+        </Col>
+      </Row>
       <Row>
         <Col>
           <iframe
             className="twitch-chat"
             title="Twitch Chat"
-            frameborder="0"
+            frameBorder="0"
             scroll="no"
-            src="https://www.twitch.tv/embed/migada/chat?darkpopout&parent=www.door.gg&parent=door.gg"
+            src="https://www.twitch.tv/embed/migada/chat?darkpopout&parent=www.door.gg&parent=door.gg&parent=localhost"
           ></iframe>
         </Col>
-        <Col md={6}>
-          <Wheel options={options} />
+        <Col>
+          <Wheel options={options} ban={handleBan} />
         </Col>
-        <Col></Col>
+        <Col>
+          <input
+            type="text"
+            value={victim}
+            onChange={(e) => newVictim(e.target.value)}
+          ></input>
+          <button onClick={toggleMute}>MUTE</button>
+        </Col>
       </Row>
     </Container>
   );
