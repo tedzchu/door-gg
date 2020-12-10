@@ -9,18 +9,26 @@ const migadaBan = new Audio('/migadaBan.wav');
 const Migada = () => {
   migadaTheme.play();
   const [victim, setVictim] = useState('FunkyPandaLover');
-  const [banCommand, setBanCommand] = useState('');
+  const [roulette, setRoulette] = useState(true);
   const [options, setOptions] = useState([]);
   const [muted, setMute] = useState(false);
+  const [banCommand, setBanCommand] = useState('');
 
   useEffect(() => {
     const updatedOptions = [];
-    Array.from({ length: 3 }).forEach(() => {
+    if (!roulette) {
+      Array.from({ length: 3 }).forEach(() => {
+        updatedOptions.push(`Ban ${victim}`);
+        updatedOptions.push(`Spare ${victim}`);
+      });
+    } else {
       updatedOptions.push(`Ban ${victim}`);
-      updatedOptions.push(`Spare ${victim}`);
-    });
+      Array.from({ length: 5 }).forEach(() => {
+        updatedOptions.push(`Spare ${victim}`);
+      });
+    }
     setOptions(updatedOptions);
-  }, [victim]);
+  }, [victim, roulette]);
 
   const newVictim = (username) => {
     setVictim(username);
@@ -33,6 +41,8 @@ const Migada = () => {
       setBanCommand(`/timeout ${username} 600`);
     }, 500);
   };
+
+  const toggleRoulette = () => setRoulette(!roulette);
 
   const toggleMute = () => setMute(!muted);
   if (muted) {
@@ -67,6 +77,12 @@ const Migada = () => {
             onChange={(e) => newVictim(e.target.value)}
           ></input>
           <button onClick={toggleMute}>MUTE</button>
+          <button
+            onClick={toggleRoulette}
+            className={`${roulette ? '' : 'hard-mode'}`}
+          >
+            HARD MODE
+          </button>
         </Col>
       </Row>
       <Row>
