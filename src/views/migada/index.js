@@ -7,6 +7,7 @@ const migadaTheme = new Audio('/migadaTheme.mp3');
 const migadaBan = new Audio('/migadaBan.wav');
 
 const Migada = () => {
+  migadaTheme.volume = 0.5;
   migadaTheme.play();
   const [victim, setVictim] = useState('FunkyPandaLover');
   const [roulette, setRoulette] = useState(true);
