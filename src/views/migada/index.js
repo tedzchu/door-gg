@@ -24,7 +24,7 @@ const Migada = () => {
             className="twitch-chat"
             title="Twitch Chat"
             scroll="no"
-            src="https://www.twitch.tv/embed/it_door/chat?darkpopout&parent=localhost"
+            src="https://www.twitch.tv/embed/it_door/chat?darkpopout&parent=www.door.gg"
           ></iframe>
         </Col>
         <Col md={6}>
