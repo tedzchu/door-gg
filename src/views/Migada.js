@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Wheel } from '../components';
 
 const Migada = () => {
-  const [victim, setVictim] = useState('FunkyPandaLover');
-  const [fiftyFifty, setFiftyFifty] = useState(false);
+  const victim = 'FunkyPandaLover';
+  const fiftyFifty = false;
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
