@@ -54,7 +54,7 @@ const Migada = () => {
     <Container fluid>
       <Row>
         <Col>
-          <h1>RAUL ROYALE</h1>
+          <h1>RUSSIAN RAUL-ETTE</h1>
         </Col>
       </Row>
       <Row>
