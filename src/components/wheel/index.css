@@ -6,7 +6,7 @@
   --wheel-color: #da3768;
   --neutral-color: white;
   --PI: 3.14159265358979;
-  --nb-item: 0;
+  --nb-item: 1;
   --item-nb: 0;
   --selected-item: 0;
   --nb-turn: 5;
@@ -62,7 +62,7 @@
   overflow: hidden;
   border-radius: 50%;
   border: solid var(--wheel-color) var(--wheel-border-size);
-  transform: rotate(calc(-360deg * var(--selected-item) / var(--nb-item, 1)));
+  transform: rotate(calc(-360deg * var(--selected-item) / var(--nb-item)));
   background-color: var(--wheel-color);
   cursor: pointer;
 }
@@ -72,7 +72,7 @@
   transform: rotate(
     calc(
       var(--nb-turn) * 360deg +
-        (-360deg * var(--selected-item) / var(--nb-item, 1))
+        (-360deg * var(--selected-item) / var(--nb-item))
     )
   );
 }
@@ -91,21 +91,16 @@
   border-radius: 50%;
 }
 
-/* Element sur la roue */
 .wheel-item {
   display: block;
   position: absolute;
   box-sizing: border-box;
-
-  /* position de l'item */
   top: 50%;
   left: 50%;
   width: 50%;
   transform-origin: center left;
   transform: translateY(-50%)
-    rotate(calc(var(--item-nb) * (360deg / var(--nb-item, 1))));
-
-  /* texte */
+    rotate(calc(var(--item-nb) * (360deg / var(--nb-item))));
   color: var(--neutral-color);
   text-align: right;
   padding: 0 25px 0 50px;
@@ -125,7 +120,6 @@
   transform: translate(-50%, -50%);
   padding-left: 0px;
   opacity: 0.25;
-
   --slice-max-width: calc(
     var(--PI) * var(--wheel-size) + var(--wheel-size) / 2
   );
