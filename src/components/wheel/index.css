@@ -1,6 +1,6 @@
 :root {
   --wheel-font: 'Lato', 'Quicksand', sans-serif;
-  --wheel-size: 400px;
+  --wheel-size: 600px;
   --wheel-slice-spacing: 50px;
   --wheel-border-size: 5px;
   --wheel-color: #da3768;
@@ -26,6 +26,7 @@
   border: solid var(--wheel-color) 3px;
   border-radius: 50%;
   user-select: none;
+  font-size: calc(10px + 1.5vmin);
 }
 
 .wheel-container::before,

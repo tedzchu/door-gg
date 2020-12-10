@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import './index.css';
 
-const items = [
-  'Ban',
-  'Dont Ban',
-  'Dont Ban',
-  'Dont Ban',
-  'Dont Ban',
-  'Dont Ban',
-];
-const Wheel = () => {
+const Wheel = (props) => {
+  const items = props.options;
   const [selectedItem, setSelected] = useState(null);
   const [spinning, setSpinning] = useState(null);
 
