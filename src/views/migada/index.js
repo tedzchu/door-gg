@@ -35,12 +35,15 @@ const Migada = () => {
   const newVictim = (username) => {
     setVictim(username);
     setBanCommand('');
+    setMute(false);
   };
+
   const handleBan = (username) => {
-    setMute(true);
+    migadaTheme.pause();
     setTimeout(() => {
       migadaBan.play();
       setBanCommand(`/timeout ${username} 600`);
+      setMute(true);
     }, 500);
   };
 
@@ -73,23 +76,40 @@ const Migada = () => {
           <Wheel options={options} ban={handleBan} />
         </Col>
         <Col>
-          <input
-            type="text"
-            value={victim}
-            onChange={(e) => newVictim(e.target.value)}
-          ></input>
-          <button onClick={toggleMute}>MUTE</button>
-          <button
-            onClick={toggleRoulette}
-            className={`${roulette ? '' : 'hard-mode'}`}
-          >
-            HARD MODE
-          </button>
+          <div>
+            <input
+              type="text"
+              value={victim}
+              onChange={(e) => newVictim(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <button onClick={toggleMute}>{muted ? 'UNMUTE' : 'MUTE'}</button>
+            <button
+              onClick={toggleRoulette}
+              className={`${roulette ? '' : 'hard-mode'}`}
+            >
+              HARD MODE
+            </button>
+          </div>
         </Col>
       </Row>
       <Row>
         <Col>
           <h2>{banCommand}</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          {banCommand.length > 0 ? (
+            <iframe
+              title="Youtube Sadness And Sorrow"
+              width="160"
+              height="120"
+              src="https://www.youtube.com/embed/wEWF2xh5E8s"
+              frameborder="0"
+            ></iframe>
+          ) : null}
         </Col>
       </Row>
     </Container>
