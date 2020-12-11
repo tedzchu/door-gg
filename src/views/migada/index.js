@@ -9,12 +9,24 @@ const migadaBan = new Audio('/migadaBan.wav');
 const Migada = () => {
   migadaTheme.volume = 0.05;
   migadaBan.volume = 0.2;
-  migadaTheme.play();
+  const themePlaying = migadaTheme.play();
   const [victim, setVictim] = useState('FunkyPandaLover');
   const [roulette, setRoulette] = useState(true);
   const [options, setOptions] = useState([]);
   const [muted, setMute] = useState(false);
   const [banCommand, setBanCommand] = useState('');
+
+  if (themePlaying !== undefined) {
+    themePlaying
+      .then(() => {})
+      .catch((error) => {
+        if (error.name === 'NotAllowedError') {
+          setMute(true);
+        } else {
+          console.error(error);
+        }
+      });
+  }
 
   useEffect(() => {
     const updatedOptions = [];
@@ -84,10 +96,15 @@ const Migada = () => {
             ></input>
           </div>
           <div>
-            <button onClick={toggleMute}>{muted ? 'UNMUTE' : 'MUTE'}</button>
+            <button
+              onClick={toggleMute}
+              style={{ backgroundColor: `${muted ? 'yellow' : ''}` }}
+            >
+              {muted ? 'UNMUTE' : 'MUTE'}
+            </button>
             <button
               onClick={toggleRoulette}
-              className={`${roulette ? '' : 'hard-mode'}`}
+              style={{ backgroundColor: `${roulette ? '' : 'red'}` }}
             >
               HARD MODE
             </button>
