@@ -133,3 +133,7 @@
   border-left: solid transparent 0;
   border-right: solid var(--baby-powder) calc(var(--wheel-size) / 2);
 }
+
+.wheel-item:nth-child(odd):before {
+  border-right: none;
+}
